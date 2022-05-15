@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.DriverSettings;
 import io.qameta.allure.Link;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Step;
@@ -19,13 +20,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TestBase {
 
     final static String owner = "Mariya Dolgopolova";
-    final static String baseUrl = "https://www.ozon.ru";
 
     MainPage mainPage = new MainPage();
 
     @BeforeAll
     static void setUp() {
-        Configuration.baseUrl = baseUrl;
+        DriverSettings.configure();
         //Configuration.holdBrowserOpen = true;
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
@@ -57,6 +57,6 @@ public class TestBase {
     @Owner(owner)
     @Target({ ElementType.TYPE, ElementType.METHOD })
     @Retention(RetentionPolicy.RUNTIME)
-    @Link(value = "ozon", url = baseUrl)
+    @Link(value = "ozon", url = "https://www.ozon.ru")
     public @interface baseAnnotation { }
 }
