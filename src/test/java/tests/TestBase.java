@@ -26,6 +26,7 @@ public class TestBase {
     @BeforeAll
     static void setUp() {
         Configuration.baseUrl = baseUrl;
+        //Configuration.holdBrowserOpen = true;
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
